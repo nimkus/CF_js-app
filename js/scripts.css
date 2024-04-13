@@ -1,0 +1,4 @@
+alert('Hello world');
+
+let favoriteFood = "Raspberries"; 
+document.write(favoriteFood);
