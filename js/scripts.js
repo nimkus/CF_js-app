@@ -6,17 +6,17 @@ let pokemonRepository = (function () {
     {
       name: 'Bulbasaur',
       height: 0.7,
-      type: ['grass', 'poison']
+      types: ['grass', 'poison']
     },
     {
       name: 'Charmander',
       height: 0.6,
-      type: ['fire']
+      types: ['fire']
     },
     {
       name: 'Squirtle',
       height: 0.5,
-      type: ['water']
+      types: ['water']
     },
     {
       name: "Golbat",
@@ -30,45 +30,62 @@ let pokemonRepository = (function () {
     },
   ];
 
-  function add(pokemon) {
-    if (typeof pokemon === 'object') {
+  function createNewPokemon(pokemon) {
+    if (
+      typeof pokemon === 'object' &&
+      'name' in pokemon &&
+      'height' in pokemon &&
+      'types' in pokemon
+    ) {
       pokemonList.push(pokemon);
     }
     else {
-      console.alert('You can only add objects to repository!');
+      alert('You have tried to add a pokemon that is not an object with a name, height and types!');
+      console.error('You have tried to add a pokemon that is not an object with a name, height and types!');
     }
   }
 
   function getAll() {
     return pokemonList;
   }
+
+  function addListItem(pokemon) {
+    let pokemonList = document.querySelector('.pokemon-list');
+    let listItem = document.createElement('li');
+    let button = document.createElement('button');
+  
+    listItem.classList.add('listItem');
+    button.classList.add('button');
+  
+    button.innerText = pokemon.name;
+  
+    listItem.appendChild(button);
+    pokemonList.appendChild(listItem);
+  }
   
   return {
-    add: add,
-    getAll: getAll
+    getAll: getAll,
+    createNewPokemon: createNewPokemon,
+    addListItem: addListItem,
   };
 })();
 
+pokemonRepository.createNewPokemon({ name: "Pikachu", height: 0.3, types: ["electric"] });
+
 pokemonRepository.getAll().forEach(function (pokemon) {
-  document.write('<p>' + pokemon.name + ' has a height of ' + pokemon.height + 'm.');
-  if (pokemon.height >= 0.7) {
-    document.write(' ---> Wow, that’s big!</p>');
-  }
-  else {
-    document.write('</p>');
-  }
+  pokemonRepository.addListItem(pokemon);
 });
 
-/* On a new line in your text editor, declare a function by starting with the keyword function.
-Specify the name of your new function. This can be something like divide or div.
-You’ll need two parameters—a dividend and a divisor.
-Start the body of your function with an if-else statement that checks whether the divisor is equal to zero. If it is, return the message “You’re trying to divide by zero.” Otherwise (else), return the value of the dividend divided by the divisor. */
 
-function divide(dividend, divisor) {
-  if (divisor === 0) {
-    return "You’re trying to divide by zero."
-  } else {
-    let result = dividend / divisor;
-    return result;
+  let pokName = { name: "Pikaddchu", height: 0.3, types: ["electric"] };
+  pokemonRepository.createNewPokemon(pokName);
+
+function submitPokemon() {
+  const pokName = document.getElementById("pokemon-name").value;
+  console.log(pokName.value);
+  if(pokName.trim().length == 0) {
+    console.log('Please enter a valid Pokemon Name');
+  }else{
+    pokemonRepository.createNewPokemon({ name: pokName, height: 0.3, types: ["electric"] });
   }
 }

@@ -1,4 +1,63 @@
+:root {
+    /* COLOR THEME
+       Pokemon colors */
+    --clr-pok-red: #FB1B1B;
+    --clr-pok-black: #000000;
+    --clr-pok-grey: #DFDFDF;
+    --clr-pok-white: #FFFFFF;
+
+    --clr-pok-blue-dark: #0A285F;
+    --clr-pok-blue-light: #0075BE;
+    --clr-pok-yellow-dark: #D5A100;
+    --clr-pok-yellow-light: #FFCC00;
+
+    /* Additional colors */
+    --clr-accent: #37796C;
+
+    /* FONTS
+       Typeface */
+    --font-h: "Yeseva One", serif;
+    --font-p: "Raleway", sans-serif;
+    --font-highlight: "Lora", serif;
+
+    /* font-sizes */
+    --size-h1: 2.5em;
+    --size-p: 1em;
+}
+
+h1 {
+    font-family: var(--font-h);
+    color: var(--clr-pok-black);
+}
+
+p {
+    font-family: var(--font-p);
+}
+
 body {
-    background-color: black;
-    color: white;
+    background-color: var(--clr-pok-yellow-light);
+    padding: 20px;
+}
+
+.pokemon-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.listItem {
+    box-sizing: border-box;
+    margin: 10px 0 10px 0;
+}
+
+.button {
+    padding: 10px;
+    width: 250px;
+    font-family: var(--font-p);
+    color: var(--clr-pok-white);
+    background-color: var(--clr-pok-red);
+    font-size: var(--size-p);
+    font-weight: bold;
+    border: solid 2px var(--clr-pok-black);
+    border-radius: 300px;
 }
