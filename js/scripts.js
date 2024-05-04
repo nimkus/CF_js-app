@@ -49,18 +49,29 @@ let pokemonRepository = (function () {
     return pokemonList;
   }
 
+  function showDetails(pokemon) {
+    console.log(pokemon);
+  };
+
+  function createEvListener(element, object) { 
+    element.addEventListener("click", function (event) {
+      showDetails(object);
+    });
+  }
+
   function addListItem(pokemon) {
     let pokemonList = document.querySelector('.pokemon-list');
     let listItem = document.createElement('li');
     let button = document.createElement('button');
   
     listItem.classList.add('listItem');
-    button.classList.add('button');
-  
-    button.innerText = pokemon.name;
-  
-    listItem.appendChild(button);
     pokemonList.appendChild(listItem);
+
+    button.classList.add('button');
+    listItem.appendChild(button);
+
+    button.innerText = pokemon.name;
+    createEvListener(button, pokemon);
   }
   
   return {
@@ -70,22 +81,24 @@ let pokemonRepository = (function () {
   };
 })();
 
-pokemonRepository.createNewPokemon({ name: "Pikachu", height: 0.3, types: ["electric"] });
+pokemonRepository.createNewPokemon({ name: "Pikachu", height: 0.3, types: ["electric"] }); 
 
 pokemonRepository.getAll().forEach(function (pokemon) {
   pokemonRepository.addListItem(pokemon);
 });
 
+// This adds Pokemons that are entered via the HTML Form
+let pokemonForm = document.getElementById("pokemon-form");
+pokemonForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+  
+  let pokName = document.getElementById("pokemon-name").value;
 
-  let pokName = { name: "Pikaddchu", height: 0.3, types: ["electric"] };
-  pokemonRepository.createNewPokemon(pokName);
-
-function submitPokemon() {
-  const pokName = document.getElementById("pokemon-name").value;
-  console.log(pokName.value);
   if(pokName.trim().length == 0) {
-    console.log('Please enter a valid Pokemon Name');
+    alert('Please enter a valid Pokemon Name');
   }else{
-    pokemonRepository.createNewPokemon({ name: pokName, height: 0.3, types: ["electric"] });
+    let pokObject = { name: pokName, height: 0.3, types: ["electric"] };
+    pokemonRepository.createNewPokemon(pokObject);
+    pokemonRepository.addListItem(pokObject);
   }
-}
+});

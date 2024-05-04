@@ -52,12 +52,25 @@ body {
 
 .button {
     padding: 10px;
-    width: 250px;
+    width: 300px;
     font-family: var(--font-p);
     color: var(--clr-pok-white);
     background-color: var(--clr-pok-red);
     font-size: var(--size-p);
     font-weight: bold;
     border: solid 2px var(--clr-pok-black);
+    border-radius: 300px;
+}
+
+.form-field {
+    margin: 15px 0 0 0;
+    padding: 10px 20px;
+    width: 255px;
+    font-family: var(--font-p);
+    color: var(--clr-pok-black);
+    background-color: var(--clr-pok-white);
+    font-size: var(--size-p);
+    font-weight: 400;
+    border: solid 1px var(--clr-pok-black);
     border-radius: 300px;
 }
