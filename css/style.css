@@ -13,6 +13,7 @@
 
     /* Additional colors */
     --clr-accent: #37796C;
+    --transparent-bg: rgba(0, 0, 0, 0.7);
 
     /* FONTS
        Typeface */
@@ -24,11 +25,16 @@
     --size-p: 1em;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 h1 {
     font-family: var(--font-h);
     color: var(--clr-pok-white);
     -webkit-text-stroke-width: 0.8px;
     -webkit-text-stroke-color: var(--clr-pok-black);
+    justify-self: start;
 }
 
 p {
@@ -37,13 +43,20 @@ p {
 
 body {
     background-color: var(--clr-pok-yellow-light);
-    padding: 20px;
+    display: grid;
+    justify-content: center;
 }
+
 
 .pokemon-list {
     list-style: none;
     margin: 0;
     padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 20px;
+    column-gap: 20px;
+    justify-content: center;
 }
 
 .listItem {
@@ -59,6 +72,7 @@ body {
     background-color: var(--clr-pok-red);
     font-size: var(--size-p);
     font-weight: bold;
+    text-transform: capitalize;
     border: solid 2px var(--clr-pok-black);
     border-radius: 300px;
 }
@@ -74,4 +88,57 @@ body {
     font-weight: 400;
     border: solid 1px var(--clr-pok-black);
     border-radius: 300px;
+}
+
+.selected-pokemon {
+    background-color: var(--clr-accent);
+}
+
+/* MODAL */
+#modal-container {
+    display: none;
+}
+
+#modal-container.is-visible {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    display: grid;
+    align-content: center;
+    justify-content: center;
+
+    background-color: var(--transparent-bg);
+}
+
+.modal {
+    position: relative;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+
+    background-color: var(--clr-pok-grey);
+    max-width: 700px;
+    padding: 30px;
+}
+
+.modal-img {
+    width: 200px;
+    height: 200px;
+}
+
+.modal-h1 {
+    display: inline-block;
+    margin: 0;
+
+    text-transform: capitalize;
+    letter-spacing: 4px;
+}
+
+/* Button to close modal */
+.modal-close {
+    position: absolute;
+    top: 0;
+    right: 0; 
 }
