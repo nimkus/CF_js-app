@@ -1,6 +1,6 @@
 :root {
-    /* COLOR THEME
-       Pokemon colors */
+    /* COLOR VARIABLES
+       Pokemon color theme */
     --clr-pok-red: #FB1B1B;
     --clr-pok-black: #000000;
     --clr-pok-grey: #DFDFDF;
@@ -33,7 +33,7 @@ h1 {
     font-family: var(--font-h);
     color: var(--clr-pok-white);
     -webkit-text-stroke-width: 0.8px;
-    -webkit-text-stroke-color: var(--clr-pok-black);
+    -webkit-text-stroke-color: var(--clr-pok-blue-dark);
     justify-self: start;
 }
 
@@ -73,7 +73,7 @@ body {
     font-size: var(--size-p);
     font-weight: bold;
     text-transform: capitalize;
-    border: solid 2px var(--clr-pok-black);
+    border: solid 2px var(--clr-pok-blue-dark);
     border-radius: 300px;
 }
 
@@ -82,19 +82,22 @@ body {
     padding: 10px 20px;
     width: 255px;
     font-family: var(--font-p);
-    color: var(--clr-pok-black);
+    color: var(--clr-pok-blue-dark);
     background-color: var(--clr-pok-white);
     font-size: var(--size-p);
     font-weight: 400;
-    border: solid 1px var(--clr-pok-black);
+    border: solid 1px var(--clr-pok-blue-dark);
     border-radius: 300px;
 }
 
+/* change color of button, when pokemon is selected */
 .selected-pokemon {
     background-color: var(--clr-accent);
 }
 
-/* MODAL */
+/* -------- MODAL WITH POKEMON DETAILS --------- */
+
+/* Modal Container */
 #modal-container {
     display: none;
 }
@@ -113,21 +116,19 @@ body {
     background-color: var(--transparent-bg);
 }
 
+/* Modal */
 .modal {
     position: relative;
     display: grid;
     grid-template-columns: 2fr 1fr;
+    grid-template-rows: 4fr 1fr 1fr;
 
     background-color: var(--clr-pok-grey);
     max-width: 700px;
     padding: 30px;
 }
 
-.modal-img {
-    width: 200px;
-    height: 200px;
-}
-
+/* Title of modal: name of pokemon */
 .modal-h1 {
     display: inline-block;
     margin: 0;
@@ -136,9 +137,48 @@ body {
     letter-spacing: 4px;
 }
 
-/* Button to close modal */
+/* Content of modal: Pokemon height and types */
+.modal-p {
+    color: var(--clr-pok-blue-dark);
+    margin: 0;
+    align-self: end;
+    text-transform: capitalize;
+}
+
+/* Modal Image: Pokemon Sprite */
+.modal-img {
+    width: 200px;
+    height: 200px;
+    outline: 1px solid var(--clr-pok-blue-dark);
+    border-radius: 100%;
+    grid-row-start: span 3;
+    background-color: var(--clr-pok-white);
+}
+
+/* Modal Button: close modal */
 .modal-close {
     position: absolute;
     top: 0;
-    right: 0; 
+    right: 0;
+}
+
+/* -------- MEDIA QUERYS --------- */
+
+@media all and (max-width: 700px) {
+    /* Modal grid */
+    .modal {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 3.5fr 1fr 1fr;
+        grid-gap: 10px;
+        align-items: center;
+    }
+
+    .pokemon-list {
+        grid-gap: 15px;
+    }
+
+    .button {
+        width: 120px;
+        margin: 0;
+    }
 }

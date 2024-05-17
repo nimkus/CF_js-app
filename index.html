@@ -28,41 +28,21 @@
 
 <body>
     <h1>Pokedex</h1>
-    <div id="modal-container"></div>
-    <ul class="pokemon-list"></ul>
 
-    <!-- Form: Create new Pokemon -->
+    <!-- Form to find out if a certain Pokemon exists
     <form id="pokemon-form" action="">
         <label for="pokemon-name" class="form-label"></label>
-        <input type="text" id="pokemon-name" class="form-field" placeholder="Enter name of Pokemon">
+        <input type="text" id="pokemon-name" class="form-field" placeholder="Does this pokemon exist?">
 
- <!--        <label for="pokemon-height" class="form-label" >Height of Pokemon:</label>
-        <input type="number" id="pokemon-height" class="form-field" >
+        <input type="submit" value="Check">
+    </form>  -->
 
-        <label for="pokemon-types" class="form-label">Type of Pokemon:</label>
-        <select id="pokemon-types">
-            <option value="">--Please choose an option--</option>
-            <option value="bug">Bug</option>
-            <option value="dragon">Dragon</option>
-            <option value="electric">Electric</option>
-            <option value="fairy">Fairy</option>
-            <option value="fire">Fire</option>
-            <option value="fighting">Fighting</option>
-            <option value="flying">Flying</option>
-            <option value="ghost">Ghost</option>
-            <option value="grass">Grass</option>
-            <option value="ground">Ground</option>
-            <option value="ice">Ice</option>
-            <option value="normal">Normal</option>
-            <option value="poison">Poison</option>
-            <option value="psychic">Psychic</option>
-            <option value="rock">Rock</option>
-            <option value="steel">Steel</option>
-            <option value="water">Water</option>
-        </select> -->
+    <!-- Represenatiion of all Pokemon -->
+    <ul class="pokemon-list"></ul>
 
-        <input type="submit" value="Submit" name="Submit">
-    </form>
+    <!-- Modal with Pokemon Details -->
+    <div id="modal-container"></div>
+
     <!-- Java Script -->
     <script src="js/promise-polyfill.js"></script>
     <script src="js/fetch-polyfill"></script>
