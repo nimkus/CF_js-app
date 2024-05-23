@@ -19,7 +19,7 @@ let pokemonRepository = (function () {
     return fetch(url).then(function (response) {
       return response.json();
     }).then(function (details) {
-      item.imageUrl = details.sprites.front_default;
+      item.imageUrl = details.sprites.other.dream_world.front_default;
       item.height = details.height;
 
       //Create a formated string that contains the types of pokemon
@@ -28,7 +28,6 @@ let pokemonRepository = (function () {
       let typeArray = details.types;
       typeArray.forEach(function (item) {
         let pokemonTypes = item.type.name;
-        console.log(pokemonTypes);
         addListItem(pokemonTypes, pokemonTypesList);
       });
 

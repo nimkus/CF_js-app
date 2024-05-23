@@ -149,9 +149,12 @@ body {
 .modal-img {
     width: 200px;
     height: 200px;
-    outline: 1px solid var(--clr-pok-blue-dark);
-    border-radius: 100%;
+    padding: 30px;
+    overflow: visible;
     grid-row-start: span 3;
+
+    border-radius: 100%;
+    outline: 1px solid var(--clr-pok-blue-dark);
     background-color: var(--clr-pok-white);
 }
 
