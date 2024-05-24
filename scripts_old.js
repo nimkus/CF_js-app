@@ -4,6 +4,10 @@ let pokemonRepository = (function () {
   let pokemonList = [];
   let apiURL = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
+  //Function to remove the class of an element
+  function removeClass(element, classToRemove) {
+    element.classList.remove(classToRemove);
+  }
   // Function to push a new listItem to a given list
   function addListItem(listItem, list) {
     list.push(listItem);
@@ -75,58 +79,37 @@ let pokemonRepository = (function () {
     listItem.appendChild(button);
 
     // Eventlistener that marks the selected pokemon
-    button.addEventListener("click", function () {
-      // Remove .selected-pokemon class from previously selected pokemon
+    createEvListener(button, pokemon);
+  }
+
+  // Show Pokemon-Details on Click
+  function showDetails(pokemon) {
+
+
+      //
+      let closeButton = document.querySelector('.close');
+
+      closeButton.addEventListener('click', (event) => {
+        let selectedPokemon = document.getElementsByClassName('selected-pokemon');
+      let selectedPokemonArray = Array.from(selectedPokemon);
+      selectedPokemonArray.forEach(function (remove) {
+        remove.classList.remove('selected-pokemon');
+      });
+      });
+  };
+
+  function createEvListener(element, object) {
+    element.addEventListener("click", function () {
+      showDetails();
+
+      // Remove .selected-pokemon class from previously selected pokemon and add it to the current one
       let selectedPokemon = document.getElementsByClassName('selected-pokemon');
       let selectedPokemonArray = Array.from(selectedPokemon);
       selectedPokemonArray.forEach(function (remove) {
         remove.classList.remove('selected-pokemon');
       });
+      element.classList.add('selected-pokemon');
 
-      // Add .selected-pokemon class from  selected pokemon
-      button.classList.add('selected-pokemon');
-
-      // Gets and displays pokemon detail in modal
-      showDetails(pokemon);
-    });
-  }
-
-  // Show Pokemon-Details on Click
-  function showDetails(pokemon) {
-    loadDetails(pokemon).then(function () {
-      // Get modal elements and set them to empty
-      let modalTitle = document.querySelector('.modal-title');
-      let modalBody = document.querySelector('.modal-body');
-      let modalFooter = document.querySelector('.modal-footer');
-
-      modalTitle.innerHTML = '';
-      modalBody.innerHTML = '';
-      modalFooter.innerHTML = '';
-
-      // Set Pokemon-Name as Title
-      let pokName = document.createElement('h1');
-      pokName.classList.add('poke-headline');
-      pokName.innerText = pokemon.name;
-      modalTitle.appendChild(pokName);
-
-      // Set modal image
-      let pokImg = document.createElement('img');  
-      pokImg.classList.add('modal-img');
-      pokImg.src = pokemon.imageUrl;
-      modalBody.appendChild(pokImg);
-
-      //Get modal text
-      let pokHeight = document.createElement('p');
-      let pokTypes = document.createElement('p');
-
-      pokHeight.classList.add('modal-p');
-      pokTypes.classList.add('modal-p');
-
-      pokHeight.innerText = 'Height: ' + pokemon.height;
-      pokTypes.innerText = 'Types: ' + pokemon.types;
-
-      modalFooter.appendChild(pokHeight);
-      modalFooter.appendChild(pokTypes);
     });
   }
 
@@ -145,5 +128,24 @@ pokemonRepository.loadList().then(function () {
   pokemonRepository.getAll().forEach(function (pokemon) {
     pokemonRepository.createPok(pokemon);
   });
+});
+
+
+
+
+// This adds Pokemons that are entered via the HTML Form
+let pokemonForm = document.getElementById("pokemon-form");
+pokemonForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  let pokName = document.getElementById("pokemon-name").value;
+
+  if (pokName.trim().length == 0) {
+    alert('Please enter a valid Pokemon Name');
+  } else {
+    let pokObject = { name: pokName, height: 0.3, types: ["electric"] };
+    pokemonRepository.addListItem(pokObject, pokemonList);
+    pokemonRepository.createPok(pokObject);
+  }
 });
 

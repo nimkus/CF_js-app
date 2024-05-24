@@ -21,37 +21,32 @@
     --font-p: "Roboto", sans-serif;
 
     /* font-sizes */
-    --size-h1: 2.5em;
+    --size-h1: 2em;
     --size-p: 1em;
 }
 
-* {
-    box-sizing: border-box;
+body {
+    background-color: var(--clr-pok-yellow-light);
 }
 
-h1 {
+/* Text Styles */
+.poke-headline {
     font-family: var(--font-h);
+    font-size: var(--size-h1);
     color: var(--clr-pok-white);
-    -webkit-text-stroke-width: 0.8px;
+    -webkit-text-stroke-width: 1.5px;
     -webkit-text-stroke-color: var(--clr-pok-blue-dark);
-    justify-self: start;
+    margin: 0;
+    text-transform: capitalize;
 }
 
 p {
     font-family: var(--font-p);
 }
 
-body {
-    background-color: var(--clr-pok-yellow-light);
-    display: grid;
-    justify-content: center;
-}
-
-
-.pokemon-list {
+/* Pokemon List */
+/* .pokemon-list {
     list-style: none;
-    margin: 0;
-    padding: 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     row-gap: 20px;
@@ -59,61 +54,34 @@ body {
     justify-content: center;
 }
 
-.listItem {
-    box-sizing: border-box;
+.pokemon-list-item {
     margin: 10px 0 10px 0;
-}
+} */
 
-.button {
+/* Button */
+.btn-custom {
     padding: 10px;
     width: 300px;
     font-family: var(--font-p);
     color: var(--clr-pok-white);
     background-color: var(--clr-pok-red);
-    font-size: var(--size-p);
-    font-weight: bold;
     text-transform: capitalize;
-    border: solid 2px var(--clr-pok-blue-dark);
-    border-radius: 300px;
+    border: solid 1.3px var(--clr-pok-blue-dark);
 }
 
-.form-field {
-    margin: 15px 0 0 0;
-    padding: 10px 20px;
-    width: 255px;
-    font-family: var(--font-p);
-    color: var(--clr-pok-blue-dark);
-    background-color: var(--clr-pok-white);
-    font-size: var(--size-p);
-    font-weight: 400;
-    border: solid 1px var(--clr-pok-blue-dark);
-    border-radius: 300px;
+.btn-custom:hover {
+    background-color: var(--clr-accent);
+    color: var(--clr-pok-white);
+    border: solid 1.3px transparent;
+}
+
+.btn-custom:active {
+    background-color: var(--clr-pok-blue-dark);
 }
 
 /* change color of button, when pokemon is selected */
 .selected-pokemon {
     background-color: var(--clr-accent);
-}
-
-/* -------- MODAL WITH POKEMON DETAILS --------- */
-
-/* Modal Container */
-#modal-container {
-    display: none;
-}
-
-#modal-container.is-visible {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-
-    display: grid;
-    align-content: center;
-    justify-content: center;
-
-    background-color: var(--transparent-bg);
 }
 
 /* Modal */
