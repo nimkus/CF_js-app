@@ -9,29 +9,7 @@ let pokemonRepository = (function () {
     list.push(listItem);
   }
 
-  // Fetches Pokemon-List and Detail-Info from the Pokemon-API
-  function loadDetails(item) {
-    let url = item.detailsUrl;
-    return fetch(url).then(function (response) {
-      return response.json();
-    }).then(function (details) {
-      item.imageUrl = details.sprites.other.dream_world.front_default;
-      item.height = details.height;
-
-      //Gets and formats the types of the pokemon + lists them seperated by comma
-      let pokemonTypesList = [];
-      let typeArray = details.types;
-      typeArray.forEach(function (item) {
-        let pokemonTypes = item.type.name;
-        addListItem(pokemonTypes, pokemonTypesList);
-      });
-      item.types = pokemonTypesList.join(', ');
-
-    }).catch(function (e) {
-      console.error(e);
-    });
-  }
-
+  // Fetches Pokemon-Name and Details-URL from the Pokemon-API
   function loadList() {
     return fetch(apiURL).then(function (response) {
       return response.json();
@@ -48,6 +26,30 @@ let pokemonRepository = (function () {
     })
   }
 
+    // Fetches Pokemon-Detail-Info from the Pokemon-API
+    function loadDetails(item) {
+      let url = item.detailsUrl;
+      return fetch(url).then(function (response) {
+        return response.json();
+      }).then(function (details) {
+        //Gets and formats the types of the pokemon + lists them seperated by comma
+        let typeArray = details.types;
+        let pokemonTypesList = [];
+        typeArray.forEach(function (item) {
+          let pokemonTypes = item.type.name;
+          addListItem(pokemonTypes, pokemonTypesList);
+        });
+        // Types of Pokemon
+        item.types = pokemonTypesList.join(', ');
+        // Image of Pokemon
+        item.imageUrl = details.sprites.other.dream_world.front_default;
+        // Height of Pokemon
+        item.height = details.height;
+      }).catch(function (e) {
+        console.error(e);
+      });
+    }
+
   // Get all pokemon of the pokemon-List
   function getAll() {
     return pokemonList;
@@ -59,12 +61,12 @@ let pokemonRepository = (function () {
 
     //Create ul as container for list of pokemon
     let pokemonList = document.createElement('ul');
-    pokemonList.classList.add('list-group');
+    pokemonList.classList.add('list-group', 'pokemon-list');
     pokeContainer.append(pokemonList);
 
     //Create each pokemon as list-item in the shape of a button
     let listItem = document.createElement('li');
-    listItem.classList.add('list-group-item', 'pokemon-list-item');
+    listItem.classList.add('pokemon-list-item');
     pokemonList.appendChild(listItem);
 
     let button = document.createElement('button');
