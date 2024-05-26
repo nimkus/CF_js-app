@@ -51,8 +51,8 @@
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-light" type="submit">Search</button>
+                <input id="search-bar" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button id="search-icon" class="btn btn-outline-light" type="submit">Search</button>
             </form>
         </div>
     </nav>
@@ -84,9 +84,11 @@
 
     <!-- FOOTER -->
     <!--Scroll-to-Top Button-->
-    <button id="scrollToTopButton" class="btn btn-outline-light">
-        <i class="fa fa-angle-up"></i>
-    </button>
+    <div class="d-flex justify-content-center">
+        <button type="button" id="scroll-to-top" class="btn btn-outline-dark btn-floating btn-lg">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
 
     <!-- Java Script -->
     <!-- promise and polyfill scripts -->

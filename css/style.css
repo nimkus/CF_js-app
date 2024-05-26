@@ -45,21 +45,21 @@ p {
 }
 
 /* Pokemon List */
-.pokemon-list {
-    list-style: none;
-    margin-top: 10px;
+#poke-container {
+    margin: 30px auto 10px auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     row-gap: 20px;
     column-gap: 20px;
-    justify-content: center;
+    justify-items: center;
+    max-width: fit-content;
 }
 
-.pokemon-list-item {
-    margin: 5px;
+.pokemon-list {
+    list-style: none;
 }
 
-/* Button */
+/* BUTTONS */
 .btn-custom {
     padding: 10px;
     width: 300px;
@@ -81,8 +81,13 @@ p {
 }
 
 /* change color of button, when pokemon is selected */
-.selected-pokemon {
-    background-color: var(--clr-accent);
+.selected-pokemon { 
+    opacity: 65%;
+}
+
+/* Scroll to top Button */
+#scroll-to-top {
+    margin: 20px;
 }
 
 /* Modal */
