@@ -18,11 +18,11 @@
     /* FONTS
        Typeface */
     --font-h: 'Pokemon Solid', sans-serif;
-    --font-p: "Roboto", sans-serif;
+    --font-p: "Raleway", sans-serif;
 
     /* font-sizes */
     --size-h1: 2em;
-    --size-p: 1em;
+    --size-p: 1.5em;
 }
 
 body {
@@ -31,12 +31,12 @@ body {
 
 /* Text Styles */
 .poke-headline {
+    margin: 0;
     font-family: var(--font-h);
     font-size: var(--size-h1);
     color: var(--clr-pok-white);
     -webkit-text-stroke-width: 1.5px;
-    -webkit-text-stroke-color: var(--clr-pok-blue-dark);
-    margin: 0;
+    -webkit-text-stroke-color: var(--clr-pok-black);
     text-transform: capitalize;
 }
 
@@ -45,28 +45,48 @@ p {
 }
 
 /* Pokemon List */
-#poke-container {
+.poke-container {
+    max-width: fit-content;
     margin: 30px auto 10px auto;
+
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     row-gap: 20px;
     column-gap: 20px;
     justify-items: center;
-    max-width: fit-content;
 }
 
 .pokemon-list {
     list-style: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
 }
 
-/* BUTTONS */
+.pokemon-list.visible {
+    opacity: 1;
+}
+
+/* Pokemonlist-Button */
 .btn-custom {
-    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    padding: 15px;
     width: 300px;
+    min-height: 120px;
+
     font-family: var(--font-p);
+    font-size: var(--size-p);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    -webkit-text-stroke-width: 0.7px;
+    -webkit-text-stroke-color: var(--clr-pok-black);
+
     color: var(--clr-pok-white);
     background-color: var(--clr-pok-red);
-    text-transform: capitalize;
     border: solid 0.8px var(--clr-pok-black);
 }
 
@@ -82,7 +102,15 @@ p {
 
 /* change color of button, when pokemon is selected */
 .selected-pokemon { 
-    opacity: 65%;
+    border: solid 0.8px var(--clr-pok-white);
+    background-color: var(--clr-accent);
+}
+
+/* Preview-Image Pokemon */
+.pok-img-custom {
+    height: 3em;
+    width: auto;
+    max-width: 4em;
 }
 
 /* Scroll to top Button */
@@ -90,16 +118,22 @@ p {
     margin: 20px;
 }
 
-/* Modal */
-.modal {
-    position: relative;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: 4fr 1fr 1fr;
+/* MODAL */
 
+/* Modal Containers */
+.modal-content {
     background-color: var(--clr-pok-grey);
-    max-width: 700px;
-    padding: 30px;
+}
+
+.modal-body {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    padding-top: 0;
+}
+
+.pok-text-container {
+    align-self: flex-end;
 }
 
 /* Title of modal: name of pokemon */
@@ -113,7 +147,7 @@ p {
 
 /* Content of modal: Pokemon height and types */
 .modal-p {
-    color: var(--clr-pok-blue-dark);
+    color: var(--clr-pok-black);
     margin: 0;
     align-self: end;
     text-transform: capitalize;
@@ -124,38 +158,25 @@ p {
     width: 200px;
     height: 200px;
     padding: 30px;
+    margin-right: 10px;
     overflow: visible;
     grid-row-start: span 3;
 
     border-radius: 100%;
-    outline: 1px solid var(--clr-pok-blue-dark);
+    outline: 1px solid var(--clr-pok-black);
     background-color: var(--clr-pok-white);
-}
-
-/* Modal Button: close modal */
-.modal-close {
-    position: absolute;
-    top: 0;
-    right: 0;
 }
 
 /* -------- MEDIA QUERYS --------- */
 
-@media all and (max-width: 700px) {
-    /* Modal grid */
-    .modal {
+@media all and (max-width: 992px) {
+    .poke-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media all and (max-width: 776px) {
+    .poke-container {
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 3.5fr 1fr 1fr;
-        grid-gap: 10px;
-        align-items: center;
-    }
-
-    .pokemon-list {
-        grid-gap: 15px;
-    }
-
-    .button {
-        width: 120px;
-        margin: 0;
     }
 }

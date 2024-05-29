@@ -51,8 +51,7 @@
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <form class="form-inline">
-                <input id="search-bar" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button id="search-icon" class="btn btn-outline-light" type="submit">Search</button>
+                <input id="search-bar" class="form-control mr-sm-2" type="search" placeholder="Search for Pokemon" aria-label="Search">
             </form>
         </div>
     </nav>
@@ -60,12 +59,14 @@
     <!-- SITE CONTENT: POKEMON-LIST -->
 
     <!--Main Content Container: Pokemon List-->
-    <div id="poke-container"></div>
+    <div class="poke-container">
+        <p id="message-remove">Loading pokemon...</p>
+    </div>
 
     <!-- Modal with Pokemon Details -->
-    <div class="modal fade" id="poke-modal" tabindex="-1" role="dialog" aria-labelledby="PokemonModalLabel"
+    <div class="modal fade" id="poke-modal" tabindex="-1" role="dialog" aria-labelledby="modal-title"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="name-of-pokemon">Name of Pokemon</h5>
@@ -75,8 +76,6 @@
                 </div>
                 <div class="modal-body">
                     Specs of Pokemon
-                </div>
-                <div class="modal-footer">
                 </div>
             </div>
         </div>
