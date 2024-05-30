@@ -1,4 +1,4 @@
-"Use strict"
+"use strict"
 
 let pokemonRepository = (function () {
   let pokemonList = [];
@@ -9,9 +9,22 @@ let pokemonRepository = (function () {
     list.push(listItem);
   }
 
+  // Function to display an error message
+  function displayErrorMessage(message) {
+    let errorMessage = document.createElement('div');
+    errorMessage.classList.add('error-message');
+    errorMessage.innerText = message;
+    document.body.appendChild(errorMessage);
+  }
+
   // Fetches Pokemon-Name and Details-URL from the Pokemon-API
   function loadList() {
     return fetch(apiURL).then(function (response) {
+      // Error message in case of network failure
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      // Return JSON to be parsed
       return response.json();
     }).then(function (json) {
       json.results.forEach(function (item) {
@@ -21,8 +34,9 @@ let pokemonRepository = (function () {
         };
         addListItem(pokemon, pokemonList);
       });
-    }).catch(function (e) {
-      console.error(e);
+    }).catch(function (error) {
+      displayErrorMessage('Failed to load the Pokémon list. Please try again later.');
+      console.error(error);
     })
   }
 
@@ -30,6 +44,11 @@ let pokemonRepository = (function () {
   function loadDetails(item) {
     let url = item.detailsUrl;
     return fetch(url).then(function (response) {
+      // Error message in case of network failure
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      // Return JSON to be parsed
       return response.json();
     }).then(function (details) {
       //Gets and formats the types of the pokemon + lists them seperated by comma
@@ -46,8 +65,9 @@ let pokemonRepository = (function () {
       // Height of Pokemon
       item.height = details.height;
 
-    }).catch(function (e) {
-      console.error(e);
+    }).catch(function (error) {
+      displayErrorMessage('Failed to load Pokémon details. Please try again later.');
+      console.error(error);
     });
   }
 
@@ -81,7 +101,7 @@ let pokemonRepository = (function () {
     setTimeout(() => {
       pokemonList.classList.add('visible');
       let loadingMessage = document.getElementById('message-remove');
-      loadingMessage.remove();
+      if (loadingMessage) { loadingMessage.remove(); }
     }, 100);
 
     // Create an Pokemon preview image 
@@ -153,10 +173,12 @@ let pokemonRepository = (function () {
 
   // Button: Scroll to the top of the page
   let scrollTopBtn = document.getElementById('scroll-to-top');
-  scrollTopBtn.addEventListener('click', function () {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-  });
+  if (scrollTopBtn) { 
+    scrollTopBtn.addEventListener('click', function () { 
+      document.body.scrollTop = 0; 
+      document.documentElement.scrollTop = 0; 
+    });
+  }
 
   // Search bar to filter Pokemon list by name
   function searchBar() {
