@@ -1,3 +1,5 @@
 {
-    "stylelint.configOverrides": {}
+  "stylelint.configOverrides": {},
+  "prettier.eslintIntegration": true,
+  "editor.formatOnSave": true
 }
