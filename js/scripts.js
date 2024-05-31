@@ -9,6 +9,24 @@ let pokemonRepository = (function () {
     list.push(listItem);
   }
 
+  // Create and show loading message
+  function showLoadingMessage() {
+    let pokeContainer = document.querySelector('.poke-container');
+    let loadingMessage = document.createElement('p')
+    loadingMessage.setAttribute('id', 'message-loading')
+    loadingMessage.classList.add('message-loading')
+    loadingMessage.innerText = 'Loading pokemon...'
+    pokeContainer.appendChild(loadingMessage)
+  }
+
+  // Hide loading message
+  function hideLoadingMessage() {
+    let loadingMessage = document.getElementById('message-loading');
+    if (loadingMessage) {
+      loadingMessage.remove()
+    }
+  }
+
   // Function to display an error message
   function displayErrorMessage(message) {
     let errorMessage = document.createElement('div');
@@ -19,7 +37,9 @@ let pokemonRepository = (function () {
 
   // Fetches Pokemon-Name and Details-URL from the Pokemon-API
   function loadList() {
+    showLoadingMessage();
     return fetch(apiURL).then(function (response) {
+      hideLoadingMessage();
       // Error message in case of network failure
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -35,6 +55,7 @@ let pokemonRepository = (function () {
         addListItem(pokemon, pokemonList);
       });
     }).catch(function (error) {
+      hideLoadingMessage();
       displayErrorMessage('Failed to load the Pokémon list. Please try again later.');
       console.error(error);
     })
@@ -97,21 +118,26 @@ let pokemonRepository = (function () {
     button.innerText = pokemon.name;
     listItem.appendChild(button);
 
-    // Add a delay in showing the Pokemon list for smoother loading and better user experience
-    setTimeout(() => {
-      pokemonList.classList.add('visible');
-      let loadingMessage = document.getElementById('message-remove');
-      if (loadingMessage) { loadingMessage.remove(); }
-    }, 100);
+    // Use a placeholder image initially
+    let image = document.createElement('img');
+    image.setAttribute('data-src', ''); // Set data-src to the actual image URL
+    image.setAttribute('alt', 'Preview image of Pokemon');
+    image.classList.add('img-fluid', 'pok-img-custom');
+    button.appendChild(image);
 
-    // Create an Pokemon preview image 
-    loadDetails(pokemon).then(function () {
-      let image = document.createElement('img');
-      image.setAttribute('src', pokemon.imageUrl);
-      image.setAttribute('alt', 'Preview image of Pokemon');
-      image.classList.add('img-fluid', 'pok-img-custom');
-      button.appendChild(image);
+    // Lazy load the pokemon preview image
+    let observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          let img = entry.target;
+          loadDetails(pokemon).then(() => {
+            img.src = pokemon.imageUrl;
+            observer.unobserve(img);
+          });
+        }
+      });
     });
+    observer.observe(image);
 
     // Eventlistener that marks the selected pokemon
     button.addEventListener("click", function () {

@@ -58,12 +58,6 @@ p {
 
 .pokemon-list {
     list-style: none;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
-
-.pokemon-list.visible {
-    opacity: 1;
 }
 
 /* Pokemonlist-Button */
