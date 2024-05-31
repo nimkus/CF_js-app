@@ -1,176 +1,176 @@
 :root {
-    /* COLOR VARIABLES
+  /* COLOR VARIABLES
        Pokemon color theme */
-    --clr-pok-red: #FB1B1B;
-    --clr-pok-black: #000000;
-    --clr-pok-grey: #DFDFDF;
-    --clr-pok-white: #FFFFFF;
+  --clr-pok-red: #fb1b1b;
+  --clr-pok-black: #000000;
+  --clr-pok-grey: #dfdfdf;
+  --clr-pok-white: #ffffff;
 
-    --clr-pok-blue-dark: #0A285F;
-    --clr-pok-blue-light: #0075BE;
-    --clr-pok-yellow-dark: #D5A100;
-    --clr-pok-yellow-light: #FFCC00;
+  --clr-pok-blue-dark: #0a285f;
+  --clr-pok-blue-light: #0075be;
+  --clr-pok-yellow-dark: #d5a100;
+  --clr-pok-yellow-light: #ffcc00;
 
-    /* Additional colors */
-    --clr-accent: #37796C;
-    --transparent-bg: rgba(0, 0, 0, 0.7);
+  /* Additional colors */
+  --clr-accent: #37796c;
+  --transparent-bg: rgba(0, 0, 0, 0.7);
 
-    /* FONTS
+  /* FONTS
        Typeface */
-    --font-h: 'Pokemon Solid', sans-serif;
-    --font-p: "Raleway", sans-serif;
+  --font-h: "Pokemon Solid", sans-serif;
+  --font-p: "Raleway", sans-serif;
 
-    /* font-sizes */
-    --size-h1: 2em;
-    --size-p: 1.5em;
+  /* font-sizes */
+  --size-h1: 2em;
+  --size-p: 1.5em;
 }
 
 body {
-    background-color: var(--clr-pok-yellow-light);
+  background-color: var(--clr-pok-yellow-light);
 }
 
 /* Text Styles */
 .poke-headline {
-    margin: 0;
-    font-family: var(--font-h);
-    font-size: var(--size-h1);
-    color: var(--clr-pok-white);
-    -webkit-text-stroke-width: 1.5px;
-    -webkit-text-stroke-color: var(--clr-pok-black);
-    text-transform: capitalize;
+  margin: 0;
+  font-family: var(--font-h);
+  font-size: var(--size-h1);
+  color: var(--clr-pok-white);
+  -webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: var(--clr-pok-black);
+  text-transform: capitalize;
 }
 
 p {
-    font-family: var(--font-p);
+  font-family: var(--font-p);
 }
 
 /* Pokemon List */
 .poke-container {
-    max-width: fit-content;
-    margin: 30px auto 10px auto;
+  max-width: fit-content;
+  margin: 30px auto 10px auto;
 
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    row-gap: 20px;
-    column-gap: 20px;
-    justify-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 20px;
+  column-gap: 20px;
+  justify-items: center;
 }
 
 .pokemon-list {
-    list-style: none;
+  list-style: none;
 }
 
 /* Pokemonlist-Button */
 .btn-custom {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 
-    padding: 15px;
-    width: 300px;
-    min-height: 120px;
+  padding: 15px;
+  width: 300px;
+  min-height: 120px;
 
-    font-family: var(--font-p);
-    font-size: var(--size-p);
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: capitalize;
-    -webkit-text-stroke-width: 0.7px;
-    -webkit-text-stroke-color: var(--clr-pok-black);
+  font-family: var(--font-p);
+  font-size: var(--size-p);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  -webkit-text-stroke-width: 0.7px;
+  -webkit-text-stroke-color: var(--clr-pok-black);
 
-    color: var(--clr-pok-white);
-    background-color: var(--clr-pok-red);
-    border: solid 0.8px var(--clr-pok-black);
+  color: var(--clr-pok-white);
+  background-color: var(--clr-pok-red);
+  border: solid 0.8px var(--clr-pok-black);
 }
 
 .btn-custom:hover {
-    background-color: var(--clr-accent);
-    color: var(--clr-pok-white);
-    border: solid 0.8px transparent;
+  background-color: var(--clr-accent);
+  color: var(--clr-pok-white);
+  border: solid 0.8px transparent;
 }
 
 .btn-custom:active {
-    background-color: var(--clr-pok-blue-dark);
+  background-color: var(--clr-pok-blue-dark);
 }
 
 /* change color of button, when pokemon is selected */
-.selected-pokemon { 
-    border: solid 0.8px var(--clr-pok-white);
-    background-color: var(--clr-accent);
+.selected-pokemon {
+  border: solid 0.8px var(--clr-pok-white);
+  background-color: var(--clr-accent);
 }
 
 /* Preview-Image Pokemon */
 .pok-img-custom {
-    height: 3em;
-    width: auto;
-    max-width: 4em;
+  height: 3em;
+  width: auto;
+  max-width: 4em;
 }
 
 /* Scroll to top Button */
 #scroll-to-top {
-    margin: 20px;
+  margin: 20px;
 }
 
 /* MODAL */
 
 /* Modal Containers */
 .modal-content {
-    background-color: var(--clr-pok-grey);
+  background-color: var(--clr-pok-grey);
 }
 
 .modal-body {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    padding-top: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  padding-top: 0;
 }
 
 .pok-text-container {
-    align-self: flex-end;
+  align-self: flex-end;
 }
 
 /* Title of modal: name of pokemon */
 .modal-h1 {
-    display: inline-block;
-    margin: 0;
+  display: inline-block;
+  margin: 0;
 
-    text-transform: capitalize;
-    letter-spacing: 4px;
+  text-transform: capitalize;
+  letter-spacing: 4px;
 }
 
 /* Content of modal: Pokemon height and types */
 .modal-p {
-    color: var(--clr-pok-black);
-    margin: 0;
-    align-self: end;
-    text-transform: capitalize;
+  color: var(--clr-pok-black);
+  margin: 0;
+  align-self: end;
+  text-transform: capitalize;
 }
 
 /* Modal Image: Pokemon Sprite */
 .modal-img {
-    width: 200px;
-    height: 200px;
-    padding: 30px;
-    margin-right: 10px;
-    overflow: visible;
-    grid-row-start: span 3;
+  width: 200px;
+  height: 200px;
+  padding: 30px;
+  margin-right: 10px;
+  overflow: visible;
+  grid-row-start: span 3;
 
-    border-radius: 100%;
-    outline: 1px solid var(--clr-pok-black);
-    background-color: var(--clr-pok-white);
+  border-radius: 100%;
+  outline: 1px solid var(--clr-pok-black);
+  background-color: var(--clr-pok-white);
 }
 
 /* -------- MEDIA QUERYS --------- */
 
 @media all and (max-width: 992px) {
-    .poke-container {
-        grid-template-columns: 1fr 1fr;
-    }
+  .poke-container {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media all and (max-width: 776px) {
-    .poke-container {
-        grid-template-columns: 1fr;
-    }
+  .poke-container {
+    grid-template-columns: 1fr;
+  }
 }

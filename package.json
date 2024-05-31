@@ -1,0 +1,16 @@
+{
+  "name": "cf_js-app",
+  "version": "1.0.0",
+  "main": "scripts_old.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "prettier": "3.2.5",
+    "prettier-eslint-cli": "^8.0.1",
+    "prettier-stylelint": "^0.4.2"
+  }
+}
