@@ -59,9 +59,7 @@ let pokemonRepository = (function () {
       })
       .catch(function (error) {
         hideLoadingMessage();
-        displayErrorMessage(
-          'Failed to load the Pokémon list. Please try again later.'
-        );
+        displayErrorMessage('Failed to load the Pokémon list. Please try again later.');
         console.error(error);
       });
   }
@@ -94,9 +92,7 @@ let pokemonRepository = (function () {
         item.height = details.height;
       })
       .catch(function (error) {
-        displayErrorMessage(
-          'Failed to load Pokémon details. Please try again later.'
-        );
+        displayErrorMessage('Failed to load Pokémon details. Please try again later.');
         console.error(error);
       });
   }
@@ -217,15 +213,15 @@ let pokemonRepository = (function () {
 
   // Search bar to filter Pokemon list by name
   function searchBar() {
+    // eslint-disable-next-line no-undef
     let $searchBar = $('#search-bar');
 
     $searchBar.on('input', function () {
       let searchValue = $searchBar.val().toLowerCase();
-      let filteredPokemon = pokemonList.filter((pokemon) =>
-        pokemon.name.toLowerCase().startsWith(searchValue)
-      );
+      let filteredPokemon = pokemonList.filter((pokemon) => pokemon.name.toLowerCase().startsWith(searchValue));
 
       // Clear the Pokemon list
+      // eslint-disable-next-line no-undef
       let $pokeContainer = $('.poke-container');
       $pokeContainer.empty();
 
